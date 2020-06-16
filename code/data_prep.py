@@ -1,5 +1,5 @@
 from random import shuffle
-import utils
+import os
 
 '''
 this module contains all functions used to read the data set from given file (and handle its structure space-wise)
@@ -30,7 +30,7 @@ def handle_any_number_of_spaces(array_of_x_label_y, ):
 
 # func to get the points_array which is tuple of - heat-heart-class and weight_array
 def get_data_set_from_path(path):
-    abs_file_path = utils.join_paths(path)
+    abs_file_path = join_paths(path)
     points_array = []
     with open(abs_file_path, "r") as f:
         whole_line_wo_whitespaces = [line.rstrip() for line in f]
@@ -51,3 +51,7 @@ def shuffle_dataset(whole_data):
     for data_point in whole_data[size_of_set:]:
         test_set.append(data_point)
     return (train_set, test_set)
+
+def join_paths(path):
+    script_dir = os.path.dirname(__file__)[:os.path.dirname(__file__).index("\code")]
+    return os.path.join(script_dir, path)
